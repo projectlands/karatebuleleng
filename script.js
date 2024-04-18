@@ -453,3 +453,59 @@ document.getElementById('fileSelectKarateF').addEventListener('change', event =>
 });
 
 
+// URL untuk mengambil data
+const urlmenu = 'https://script.google.com/macros/s/AKfycbw7Z5x8UnTg3SB2AhkGqAXd-Z63gpFfY1Ls0TuVOaoELv-Y4CdTUui741eJ-oLN095l/exec';
+
+// Fungsi untuk melakukan fetch data dari URL
+fetch(urlmenu)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Mengubah response ke JSON
+  })
+  .then(data => {
+    // Data berhasil diambil, sekarang kita dapat menempelkannya ke elemen HTML
+    // console.log('Data:', data);
+
+    // Mendapatkan elemen HTML berdasarkan ID
+    const header1Element = document.getElementById('header1');
+    const select1Element01 = document.getElementById('select01');
+    const select1Element1 = document.getElementById('select1');
+    const header2Element = document.getElementById('header2');
+    const select2Element02 = document.getElementById('select02');
+    const select2Element2 = document.getElementById('select2');
+
+    // Menempelkan data ke elemen HTML
+    header1Element.innerText = data[0].header1;
+    select1Element01.innerText = data[0].label_select1;
+    select1Element1.innerText = data[1].label_select1;
+    header2Element.innerText = data[0].header2;
+    select2Element02.innerText = data[0].label_select2;
+    select2Element2.innerText = data[1].label_select2;
+
+    // // Membuat pilihan untuk select1
+    // const option1Default = document.createElement('option');
+    // option1Default.text = data[0].text_select_default1;
+    // select1Element.add(option1Default);
+
+    // const option1 = document.createElement('option');
+    // option1.text = data[0].label_select1;
+    // select1Element.add(option1);
+
+    // // Membuat pilihan untuk select2
+    // const option2Default = document.createElement('option');
+    // option2Default.text = data[0].text_select_default2;
+    // select2Element.add(option2Default);
+
+    // const option2 = document.createElement('option');
+    // option2.text = data[1].label_select2;
+    // select2Element.add(option2);
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+    // Handle error jika fetch tidak berhasil
+  });
+
+
+
